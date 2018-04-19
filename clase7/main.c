@@ -1,18 +1,20 @@
 #include <stdio.h>
 #include <stdlib.h>
+#define T 3
 
 float calcularPromedio(int,int);
+void mostrarAlumnos(int[],char[][30],int[],int[],float[],int);
 
 int main()
 {
-    int legajos[3];
-    char nombres[3][30];
-    int nota1[3];
-    int nota2[3];
-    float promedios[3];
+    int legajos[T];
+    char nombres[T][30];
+    int nota1[T];
+    int nota2[T];
+    float promedios[T];
     int i;
 
-    for(i=0;i<3;i++)
+    for(i=0;i<T;i++)
     {
         printf("Ingrese legajo: ");
         scanf("%d", &legajos[i]);
@@ -26,7 +28,21 @@ int main()
         promedios[i]=calcularPromedio(nota1[i],nota2[i]);
     }
 
-    for(i=0;i<3;i++)
+    mostrarAlumnos(legajos,nombres,nota1,nota2,promedios,T);
+    return 0;
+}
+
+float calcularPromedio(int nota1,int nota2)
+{
+    float promedio;
+    promedio = (float)(nota1 + nota2)/2;
+    return promedio;
+}
+
+void mostrarAlumnos(int legajos[],char nombres[][30],int nota1[],int nota2[],float promedios[],int cantidad)
+{
+    int i;
+    for(i=0;i<cantidad;i++)
     {
         printf("\nLegajo: %d",legajos[i]);
         printf("\nNombre: %s",nombres[i]);
@@ -34,14 +50,4 @@ int main()
         printf("\nSegunda nota: %d",nota2[i]);
         printf("\nPromedio: %.2f \n",promedios[i]);
     }
-
-    return 0;
-}
-
-float calcularPromedio(int nota1,int nota2)
-{
-    float promedio;
-    promedio = (float)nota1 + nota2;
-    promedio = promedio/2;
-    return promedio;
 }
